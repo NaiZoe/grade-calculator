@@ -10,4 +10,7 @@ Real-Time Results: Instantly calculates your overall grade after inputting all r
 
 Technologies Used
 Python: Core language used for calculations and logic.
-Tkinter: GUI framework for a user-friendly interface.
+Customize Tkinter: GUI framework for a user-friendly interface.
+
+Installation
+1: pip install customtkinter

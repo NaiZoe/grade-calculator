@@ -1,4 +1,4 @@
-import tkinter as tk
+import customtkinter as ctk
 
 class MainWindow:
 
@@ -12,15 +12,15 @@ class MainWindow:
         self.main_window.geometry(f"{window_width}x{window_height}")
 
         # Assignment category column
-        label = tk.Label(main_window, text="Assignment category", bg="PeachPuff", font=("Arial", 14))
+        label = ctk.CTkLabel(main_window, text="Assignment category", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
         label.grid(row = 0, column = 1, padx=10, pady=10)
 
         # Grade column
-        label = tk.Label(main_window, text="Grade", bg="PeachPuff", font=("Arial", 14))
+        label = ctk.CTkLabel(main_window, text="Grade", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
         label.grid(row = 0, column = 2, padx=50, pady=10)
 
         # Grade weight column
-        label = tk.Label(main_window, text="Weight", bg="PeachPuff", font=("Arial", 14))
+        label = ctk.CTkLabel(main_window, text="Weight", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
         label.grid(row = 0, column = 3, padx=50, pady=10)
 
         # Create user input box
@@ -34,17 +34,17 @@ class MainWindow:
 
         for i in range(rows):
             # Assignment category input
-            assignment_category_entry = tk.Entry(main_window, width=15)
+            assignment_category_entry = ctk.CTkEntry(main_window, width=100)
             assignment_category_entry.grid(row=i + 1, column=1, padx=10, pady=5)
             #append to the list here
 
             # Assignment grade input
-            grade_entry = tk.Entry(main_window, width = 15)
+            grade_entry = ctk.CTkEntry(main_window, width = 50)
             grade_entry.grid(row = i + 1, column=2, padx=10, pady=5)
             #append to the list here
 
             # Assignment weight input
-            weight_entry = tk.Entry(main_window, width = 15)
+            weight_entry = ctk.CTkEntry(main_window, width = 50)
             weight_entry.grid(row = i + 1, column=3, padx=10, pady=5)
             #append to the list here
         
