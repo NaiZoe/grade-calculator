@@ -12,15 +12,15 @@ class MainWindow:
         self.main_window.geometry(f"{window_width}x{window_height}")
 
         # Assignment category column
-        label = ctk.CTkLabel(main_window, text="Assignment category", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
+        label = ctk.CTkLabel(main_window, text="Assignment category", fg_color="PeachPuff", font = ctk.CTkFont("Arial", 14), text_color="black")
         label.grid(row = 0, column = 1, padx=10, pady=10)
 
         # Grade column
-        label = ctk.CTkLabel(main_window, text="Grade", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
+        label = ctk.CTkLabel(main_window, text="Grade", fg_color="PeachPuff", font = ctk.CTkFont("Arial", 14), text_color="black")
         label.grid(row = 0, column = 2, padx=50, pady=10)
 
         # Grade weight column
-        label = ctk.CTkLabel(main_window, text="Weight", fg_color="PeachPuff", font=("Arial", 14), text_color="black")
+        label = ctk.CTkLabel(main_window, text="Weight", fg_color="PeachPuff", font = ctk.CTkFont("Arial", 14), text_color="black")
         label.grid(row = 0, column = 3, padx=50, pady=10)
 
         # Create user input box
