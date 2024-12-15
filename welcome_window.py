@@ -14,13 +14,16 @@ class WelcomeWindow:
         self.window.title("Grade Calculator")
         self.window.geometry("400x300")
 
-         # Welcome message
+        # Welcome message
         label = ctk.CTkLabel(window, text="Welcome to the Grade Calculator!", font = ctk.CTkFont("Arial", 16), pady=20)
         label.pack(expand=True, anchor="center")
 
         # Button to proceed to the main application
         start_button = ctk.CTkButton(window, text="Start", font = ctk.CTkFont("Arial", 14), command=self.open_main_window)
         start_button.pack(pady=(0, 50))
+
+        quit_button = ctk.CTkButton(window, text = "Exit", font = ctk.CTkFont("Arial", 14), command=self.quit_app)
+        quit_button.pack(pady =(0, 40))
 
         #add footer
         footer_label = ctk.CTkLabel(window, text="Designed and Developed by Qitao Yang", font = ctk.CTkFont("Arial", 10), text_color="gray")
@@ -35,4 +38,8 @@ class WelcomeWindow:
         main_window = ctk.CTk()
         MainWindow(main_window)
         main_window.mainloop()
+
+    def quit_app(self):
+        self.window.quit()
+        
 
