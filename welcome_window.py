@@ -20,10 +20,10 @@ class WelcomeWindow:
 
         # Button to proceed to the main application
         start_button = ctk.CTkButton(window, text="Start", font = ctk.CTkFont("Arial", 14), command=self.open_main_window)
-        start_button.pack(pady=(0, 50))
+        start_button.pack(pady=(0, 30))
 
         quit_button = ctk.CTkButton(window, text = "Exit", font = ctk.CTkFont("Arial", 14), command=self.quit_app)
-        quit_button.pack(pady =(0, 40))
+        quit_button.pack(pady =(0, 20))
 
         #add footer
         footer_label = ctk.CTkLabel(window, text="Designed and Developed by Qitao Yang", font = ctk.CTkFont("Arial", 10), text_color="gray")
