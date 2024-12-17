@@ -13,4 +13,4 @@ Python: Core language used for calculations and logic.
 Customize Tkinter: GUI framework for a user-friendly interface.
 
 Installation
-1: pip install customtkinter
+1: pip install -r requirements.txt
