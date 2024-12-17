@@ -6,17 +6,24 @@ class MainWindow:
         #create main application window
         self.main_window = main_window
         self.main_window.title("Grade Calculator")
+
         #window size
-        window_width = 550
-        window_height = 550
+        window_width = 600
+        window_height = 1000
         self.main_window.geometry(f"{window_width}x{window_height}")
 
         #Variables
         self.current_row = 1 #use to track current row
         self.category_count = 0
         self.max_category = 10
+
+        #Track main cateogories
+        self.categories = {}  # Dictionary to track main categories and their subcategories
+
         # Assignment category column
-        label = ctk.CTkLabel(main_window, text="Assignment Category", 
+        label = ctk.CTkLabel(
+            main_window, 
+            text="Assignment Category", 
             fg_color="PeachPuff",
             font = ctk.CTkFont("Arial", 14),
             text_color="black")
@@ -82,35 +89,57 @@ class MainWindow:
             self.show_error_popup("Max categories (10) reached!")
             return
         
-        # Create a label for the category
-        category_entry = ctk.CTkEntry(
-        self.main_window,
-        font=ctk.CTkFont(size=12, weight="bold"),
-        text_color="black",
-        )
-        category_entry.grid(row=self.current_row, column=0, pady=5, padx=20)
+         # Store the current row as the parent category row
+        parent_row = self.current_row  # Save the current row before incrementing
 
-        #Increment the row and category count
-        self.category_count+=1
+        # Create a label for the category
+        main_category_entry = ctk.CTkEntry(
+            self.main_window,
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color="black",
+        )
+        main_category_entry.grid(row=self.current_row, column=0, pady=5, padx=20)
+
+        # Add button to allow adding subcategories
+        add_sub_button = ctk.CTkButton(
+            self.main_window,
+            text="Add Subcategory",
+            font=ctk.CTkFont(size=10),
+            command=lambda row=parent_row: self.add_subcategory(row),
+            fg_color="lightgray",
+            text_color="black",
+            hover_color="gray",
+        )
+        add_sub_button.grid(row=self.current_row, column=1, pady=5, padx=10)
+
+        # Track this main category and update values
+        self.categories[self.current_row] = {"entry": main_category_entry, "sub_row": parent_row + 1}
+        # Increment row and category count
         self.current_row += 1
+        self.category_count += 1
 
         # Move the "Add Major Category" button down
         self.add_button.grid(row=self.current_row, column=0, padx=10, pady=10)
 
-        # Add button to allow adding sub-items under this category
-        """
-        add_button = ctk.CTkButton(
-            self.main_window,
-            text="Add Sub-item",
-            command=lambda: self.add_sub_item(category_name),
-            font=ctk.CTkFont(size=10),
-        )
-        add_button.grid(row=self.current_row, column=1, pady=5)
+    def add_subcategory(self, parent_category):
+        """Adds a subcategory under the specified main category."""
+        sub_row = self.categories[parent_category]["sub_row"]
 
-        # Track the category and its first row
-        self.categories[category_name] = {"row": self.current_row, "sub_items": []}
-        self.current_row += 1  # Increment row for the next category or sub-item
-        """
+        # Create subcategory entry
+        sub_category_entry = ctk.CTkEntry(
+            self.main_window,
+            font=ctk.CTkFont(size=14),
+            placeholder_text="Enter Subcategory",
+        )
+        sub_category_entry.grid(row=sub_row, column=0, pady=2, padx=0, sticky="E")
+
+        # Update the next available row for this main category
+        self.categories[parent_category]["sub_row"] += 1
+        self.current_row = max(self.current_row, sub_row + 1)  # Adjust the row for other main categories
+
+        # Move "Add Major Category" button down
+        self.add_button.grid(row=self.current_row, column=0, padx=10, pady=10)
+
     def show_error_popup(self, message):
         """Show an error message in a popup window centered on the main window."""
         # Create the popup window
